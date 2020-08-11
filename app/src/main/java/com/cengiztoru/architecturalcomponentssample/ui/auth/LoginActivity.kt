@@ -1,6 +1,7 @@
 package com.cengiztoru.architecturalcomponentssample.ui.auth
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +13,10 @@ import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.databinding.ActivityLoginBinding
+import com.cengiztoru.architecturalcomponentssample.ui.quotes.QuotesActivity
 import com.cengiztoru.architecturalcomponentssample.util.hide
 import com.cengiztoru.architecturalcomponentssample.util.show
-import com.cengiztoru.architecturalcomponentssample.util.snackbar
 import com.cengiztoru.architecturalcomponentssample.util.toast
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), AuthListener {
     lateinit var binding: ActivityLoginBinding
@@ -48,6 +48,15 @@ class LoginActivity : AppCompatActivity(), AuthListener {
             }
         })
 
+        //TODO DELETE HERE
+        startActivity(
+            Intent(
+                this,
+                QuotesActivity::class.java
+            )
+        )
+        finish()
+
     }
 
     override fun onStarted() {
@@ -56,8 +65,17 @@ class LoginActivity : AppCompatActivity(), AuthListener {
 
     override fun onSuccess(user: AuthResponse.User) {
         binding.progressBar.hide()
-        toast(user.name + " LOGGED IN")
-        root_layout.snackbar(user.name + " LOGGED IN")
+
+        startActivity(
+            Intent(
+                this,
+                QuotesActivity::class.java
+            )
+        )
+        finish()
+
+//        toast(user.name + " LOGGED IN")
+//        root_layout.snackbar(user.name + " LOGGED IN")
     }
 
     override fun onFailure(message: String) {

@@ -3,6 +3,7 @@ package com.cengiztoru.architecturalcomponentssample.data.repositories
 import com.cengiztoru.architecturalcomponentssample.data.network.SafeApiRequest
 import com.cengiztoru.architecturalcomponentssample.data.network.Services
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
+import com.cengiztoru.architecturalcomponentssample.data.network.responses.QuotesResponse
 
 class UserRepository(
     private val api: Services
@@ -12,6 +13,9 @@ class UserRepository(
         return apiRequest { api.userLogin(email, password) }
     }
 
+    suspend fun getQuotes(): QuotesResponse {
+        return apiRequest { api.getQuotes() }
+    }
 
     //BEFORE HANDLING API EXCEPTIONS
 //
