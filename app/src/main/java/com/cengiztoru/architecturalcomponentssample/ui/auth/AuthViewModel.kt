@@ -1,7 +1,6 @@
 package com.cengiztoru.architecturalcomponentssample.ui.auth
 
 import android.view.View
-import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
@@ -19,7 +18,10 @@ class AuthViewModel : ViewModel() {
     var password: String? = null
     var listener: AuthListener? = null
 
-    fun onLoginClick(view : View) {
+    val liveEmail: MutableLiveData<String> = MutableLiveData()
+
+
+    fun onLoginClick(view: View) {
         listener?.onStarted()
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
             listener?.onFailure("Invalid email or password")
