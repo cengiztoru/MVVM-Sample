@@ -2,6 +2,7 @@ package com.cengiztoru.architecturalcomponentssample.ui.auth
 
 import android.view.View
 import androidx.lifecycle.ViewModel
+import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 
 
 /**     Code With 💗
@@ -15,13 +16,16 @@ class AuthViewModel : ViewModel() {
     var password: String? = null
     var listener : AuthListener? = null
 
-    fun onLoginClick(view : View){
+    fun onLoginClick(view : View) {
         listener?.onStarted()
-        if (email.isNullOrEmpty() || password.isNullOrEmpty()){
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
             listener?.onFailure("Invalid email or password")
             return
         }
-        listener?.onSuccess()
+
+        //todo DI
+        val loginResponse = UserRepository().userLogin(email!!, password!!)
+        listener?.onSuccess(loginResponse)
     }
 
 }

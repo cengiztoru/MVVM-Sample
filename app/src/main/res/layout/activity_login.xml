@@ -95,7 +95,7 @@
                         android:background="@drawable/edit_text_round_gray_background"
                         android:drawableLeft="@drawable/ic_email"
                         android:drawablePadding="16dp"
-                        android:hint="belal@gmail.com"
+                        android:hint="probelalkhan@gmail.com"
                         android:inputType="textEmailAddress"
                         android:padding="12dp"
                         android:text="@={viewmodel.email}"
@@ -175,13 +175,12 @@
 
             <ProgressBar
                 android:id="@+id/progress_bar"
-
+                android:elevation="6dp"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:elevation="6dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
