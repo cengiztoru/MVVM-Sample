@@ -10,111 +10,150 @@
             type="com.cengiztoru.architecturalcomponentssample.ui.auth.AuthViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/root_layout"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E2E2E2"
         tools:context=".ui.auth.LoginActivity">
 
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/root_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="16dp">
 
             <ImageView
+                android:background="@drawable/ic_app_logo"
                 android:id="@+id/image_view_logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="75dp"
-                android:background="@drawable/ic_app_logo" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image_view_logo"
-                android:orientation="vertical">
+                android:layout_gravity="center_horizontal"
+                android:text="architect your app with"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#465A61"
+                app:fontFamily="cursive"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view_logo" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="architect your app with"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#465A61"
-                    app:fontFamily="cursive" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="MVVM"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                    android:textColor="#969EEE"
-                    android:textStyle="bold"
-                    android:typeface="monospace"
-                    app:fontFamily="casual" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
 
-            </LinearLayout>
+                android:text="MVVM"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="#969EEE"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                app:fontFamily="casual"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_text" />
 
-            <LinearLayout
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/linearLayout1"
                 android:background="#ffffff"
-                android:orientation="vertical"
-                android:padding="18dp">
+                android:padding="18dp"
+                app:cardCornerRadius="0dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp">
 
-                <EditText
-                    android:id="@+id/edit_text_email"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_round_gray_background"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="16dp"
-                    android:hint="belal@gmail.com"
-                    android:inputType="textEmailAddress"
-                    android:padding="12dp"
-                    android:text="@={viewmodel.email}" />
-
-                <EditText
-                    android:id="@+id/edit_text_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/edit_text_round_gray_background"
-                    android:drawableLeft="@drawable/ic_lock"
-                    android:drawablePadding="16dp"
-                    android:hint="password"
-                    android:inputType="textPassword"
-                    android:padding="12dp"
-                    android:text="@={viewmodel.password}" />
-
-                <TextView
-                    android:id="@+id/text_view_forget_password"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="Forget Password?"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:layout_margin="10dp"
+                    android:background="#ffffff">
 
-                <Button
-                    android:id="@+id/button_sign_in"
-                    android:layout_width="150dp"
-                    android:onClick="@{viewmodel::onLoginClick}"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Sign In"
-                    android:textAllCaps="false" />
+                    <EditText
+                        android:id="@+id/edit_text_email"
+                        android:layout_width="match_parent"
 
-            </LinearLayout>
+                        android:layout_height="55dp"
+                        android:background="@drawable/edit_text_round_gray_background"
+                        android:drawableLeft="@drawable/ic_email"
+                        android:drawablePadding="16dp"
+                        android:hint="belal@gmail.com"
+                        android:inputType="textEmailAddress"
+                        android:padding="12dp"
+                        android:text="@={viewmodel.email}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/edit_text_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edit_text_round_gray_background"
+                        android:drawableLeft="@drawable/ic_lock"
+                        android:drawablePadding="16dp"
+                        android:hint="password"
+                        android:inputType="textPassword"
+                        android:padding="12dp"
+                        android:text="@={viewmodel.password}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_text_email" />
+
+                    <TextView
+
+                        android:id="@+id/text_view_forget_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="12dp"
+                        android:text="Forget Password?"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_text_password" />
+
+                    <Button
+                        android:id="@+id/button_sign_in"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:onClick="@{viewmodel::onLoginClick}"
+                        android:text="Sign In"
+                        android:textAllCaps="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_forget_password" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/text_view_sign_up"
@@ -122,24 +161,35 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linearLayout2"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:text="Don't have an account?\nSign Up Here"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
 
-        </RelativeLayout>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:visibility="invisible" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:elevation="6dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
 
 </layout>
-
-
