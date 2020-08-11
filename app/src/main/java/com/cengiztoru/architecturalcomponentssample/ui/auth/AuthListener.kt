@@ -1,6 +1,6 @@
 package com.cengiztoru.architecturalcomponentssample.ui.auth
 
-import androidx.lifecycle.LiveData
+import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
 
 
 /**     Code With 💗
@@ -10,6 +10,6 @@ import androidx.lifecycle.LiveData
 
 interface AuthListener {
     fun onStarted()
-    fun onSuccess(loginResponse: LiveData<String>)
+    fun onSuccess(user: AuthResponse.User)
     fun onFailure(message: String)
 }
