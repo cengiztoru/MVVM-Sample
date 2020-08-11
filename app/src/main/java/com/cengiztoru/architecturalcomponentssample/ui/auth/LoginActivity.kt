@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.cengiztoru.architecturalcomponentssample.R
+import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
+import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.databinding.ActivityLoginBinding
 import com.cengiztoru.architecturalcomponentssample.util.hide
 import com.cengiztoru.architecturalcomponentssample.util.show
@@ -24,9 +26,14 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_login)
 
+        val api = MyApi()
+        val repository = UserRepository(api)
+        val factory = AuthViewModelFactory(repository)
+
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-        val viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, factory).get(AuthViewModel::class.java)
 
         binding.viewmodel = viewModel
 

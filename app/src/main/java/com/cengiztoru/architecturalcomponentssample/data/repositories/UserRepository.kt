@@ -1,13 +1,15 @@
 package com.cengiztoru.architecturalcomponentssample.data.repositories
 
-import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
 import com.cengiztoru.architecturalcomponentssample.data.network.SafeApiRequest
+import com.cengiztoru.architecturalcomponentssample.data.network.Services
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
 
-class UserRepository : SafeApiRequest() {
+class UserRepository(
+    private val api: Services
+) : SafeApiRequest() {
 
     suspend fun userLogin(email: String, password: String): AuthResponse {
-        return apiRequest { MyApi().userLogin(email, password) }
+        return apiRequest { api.userLogin(email, password) }
     }
 
 

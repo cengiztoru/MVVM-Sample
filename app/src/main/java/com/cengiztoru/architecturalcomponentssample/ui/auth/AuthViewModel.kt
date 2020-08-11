@@ -13,7 +13,9 @@ import com.cengiztoru.architecturalcomponentssample.util.Coroutines
  * cengiztoru@gmail.com
  */
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(
+    private val repository: UserRepository
+) : ViewModel() {
 
     var email: String? = null
     var password: String? = null
@@ -34,7 +36,7 @@ class AuthViewModel : ViewModel() {
 
         Coroutines.main {
             try {
-                val response = UserRepository().userLogin(email!!, password!!)
+                val response = repository.userLogin(email!!, password!!)
                 response.user?.let {
                     listener?.onSuccess(it)
                     return@main
