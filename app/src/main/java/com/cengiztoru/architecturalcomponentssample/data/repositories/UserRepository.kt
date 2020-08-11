@@ -1,15 +1,21 @@
 package com.cengiztoru.architecturalcomponentssample.data.repositories
 
 import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
+import com.cengiztoru.architecturalcomponentssample.data.network.SafeApiRequest
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
-import retrofit2.Response
 
-class UserRepository {
+class UserRepository : SafeApiRequest() {
 
-
-    suspend fun userLogin(email: String, password: String): Response<AuthResponse> {
-        return MyApi().userLogin(email, password)
+    suspend fun userLogin(email: String, password: String): AuthResponse {
+        return apiRequest { MyApi().userLogin(email, password) }
     }
+
+
+    //BEFORE HANDLING API EXCEPTIONS
+//
+//    suspend fun userLogin(email: String, password: String): Response<AuthResponse> {
+//        return MyApi().userLogin(email, password)
+//    }
 
 
     //BEFORE COROUTINES WE USE THIS. IT CLEAN OUR CODE

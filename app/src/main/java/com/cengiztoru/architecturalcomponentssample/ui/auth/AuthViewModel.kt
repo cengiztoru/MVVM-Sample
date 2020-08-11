@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
+import com.cengiztoru.architecturalcomponentssample.util.ApiExceptions
 import com.cengiztoru.architecturalcomponentssample.util.Coroutines
 
 
@@ -28,14 +29,33 @@ class AuthViewModel : ViewModel() {
             return
         }
 
+
+
+
         Coroutines.main {
-            val response = UserRepository().userLogin(email!!, password!!)
-            if (response.isSuccessful) {
-                listener?.onSuccess(response.body()?.user!!)
-            } else {
-                listener?.onFailure("Error code ${response.code()}")
+            try {
+                val response = UserRepository().userLogin(email!!, password!!)
+                response.user?.let {
+                    listener?.onSuccess(it)
+                    return@main
+                }
+                listener?.onFailure(response.message!!)
+            } catch (e: ApiExceptions) {
+                listener?.onFailure(e.message!!)
             }
+
+
         }
+
+        //BEFORE HANDLING API EXCEPTIONS
+//        Coroutines.main {
+//            val response = UserRepository().userLogin(email!!, password!!)
+//            if (response.isSuccessful) {
+//                listener?.onSuccess(response.body()?.user!!)
+//            } else {
+//                listener?.onFailure("Error code ${response.code()}")
+//            }
+//        }
 
 
         //BEFORE COROUTINES

@@ -12,7 +12,9 @@ import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthR
 import com.cengiztoru.architecturalcomponentssample.databinding.ActivityLoginBinding
 import com.cengiztoru.architecturalcomponentssample.util.hide
 import com.cengiztoru.architecturalcomponentssample.util.show
+import com.cengiztoru.architecturalcomponentssample.util.snackbar
 import com.cengiztoru.architecturalcomponentssample.util.toast
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), AuthListener {
     lateinit var binding: ActivityLoginBinding
@@ -48,6 +50,7 @@ class LoginActivity : AppCompatActivity(), AuthListener {
     override fun onSuccess(user: AuthResponse.User) {
         binding.progressBar.hide()
         toast(user.name + " LOGGED IN")
+        root_layout.snackbar(user.name + " LOGGED IN")
     }
 
     override fun onFailure(message: String) {
