@@ -14,6 +14,7 @@ class NetworkState(val status: Status, val msg: String) {
         val LOADED: NetworkState
         val LOADING: NetworkState
         val ERROR: NetworkState
+        val NOINTERNET: NetworkState
         val ENDOFLIST: NetworkState
 
         init {
@@ -24,6 +25,8 @@ class NetworkState(val status: Status, val msg: String) {
             ERROR = NetworkState(Status.FAILED, "Something went wrong")
 
             ENDOFLIST = NetworkState(Status.FAILED, "You have reached the end")
+
+            NOINTERNET = NetworkState(Status.FAILED, "Make sure you have an active network")
         }
     }
 }

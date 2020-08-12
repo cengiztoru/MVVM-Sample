@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.cengiztoru.architecturalcomponentssample.R
 import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
+import com.cengiztoru.architecturalcomponentssample.data.network.NetworkConnectionsInterceptor
 import com.cengiztoru.architecturalcomponentssample.data.network.NetworkState
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.util.toast
@@ -17,7 +18,7 @@ class QuotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
 
-        val api = MyApi()
+        val api = MyApi(NetworkConnectionsInterceptor(this))
         val repository = UserRepository(api)
         val factory = QuotesViewModelFactory(repository)
 
@@ -25,11 +26,14 @@ class QuotesActivity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this, factory).get(QuotesViewModel::class.java)
 
         viewModel.networkState.observe(this, Observer {
-            if (it == NetworkState.LOADED) {
-                progress_bar.visibility = View.GONE
-            } else {
-                toast(it.msg)
 
+            when (it) {
+                NetworkState.LOADED -> progress_bar.visibility = View.GONE
+                NetworkState.LOADING -> progress_bar.visibility = View.VISIBLE
+                else -> {
+                    toast(it.msg)
+                    progress_bar.visibility = View.GONE
+                }
             }
         })
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.cengiztoru.architecturalcomponentssample.R
 import com.cengiztoru.architecturalcomponentssample.data.network.MyApi
+import com.cengiztoru.architecturalcomponentssample.data.network.NetworkConnectionsInterceptor
 import com.cengiztoru.architecturalcomponentssample.data.network.responses.AuthResponse
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.databinding.ActivityLoginBinding
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity(), AuthListener {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_login)
 
-        val api = MyApi()
+        val api = MyApi(NetworkConnectionsInterceptor(this))
         val repository = UserRepository(api)
         val factory = AuthViewModelFactory(repository)
 

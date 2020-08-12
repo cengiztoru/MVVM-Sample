@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.util.ApiExceptions
 import com.cengiztoru.architecturalcomponentssample.util.Coroutines
+import com.cengiztoru.architecturalcomponentssample.util.NoInternetExceptions
 
 
 /**     Code With 💗
@@ -43,6 +44,8 @@ class AuthViewModel(
                 }
                 listener?.onFailure(response.message!!)
             } catch (e: ApiExceptions) {
+                listener?.onFailure(e.message!!)
+            } catch (e: NoInternetExceptions) {
                 listener?.onFailure(e.message!!)
             }
 

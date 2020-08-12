@@ -10,6 +10,7 @@ import com.cengiztoru.architecturalcomponentssample.data.network.responses.Quote
 import com.cengiztoru.architecturalcomponentssample.data.repositories.UserRepository
 import com.cengiztoru.architecturalcomponentssample.util.ApiExceptions
 import com.cengiztoru.architecturalcomponentssample.util.Coroutines
+import com.cengiztoru.architecturalcomponentssample.util.NoInternetExceptions
 
 class QuotesViewModel(private val repository: UserRepository) : ViewModel() {
 
@@ -48,7 +49,12 @@ class QuotesViewModel(private val repository: UserRepository) : ViewModel() {
             } catch (e: ApiExceptions) {
                 _networkState.postValue(NetworkState.ERROR)
                 Log.e("quotes", "failure")
+            } catch (e: NoInternetExceptions) {
+                _networkState.postValue(NetworkState.NOINTERNET)
+                Log.e("quotes", "internet exception")
+
             }
+
         }
     }
 
