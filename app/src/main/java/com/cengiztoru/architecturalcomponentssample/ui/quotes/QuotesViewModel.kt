@@ -21,6 +21,9 @@ class QuotesViewModel(private val repository: UserRepository) : ViewModel() {
     val quotes: LiveData<List<QuotesResponse.Quote>>
         get() = _quotes
 
+    //get data from remote here. Not in UI.
+    // By this way data is will be lifecycle aware
+    //So if user turn his phone to landscape, data will not re-request, because in store viewmodel
     init {
         getQuotes()
     }

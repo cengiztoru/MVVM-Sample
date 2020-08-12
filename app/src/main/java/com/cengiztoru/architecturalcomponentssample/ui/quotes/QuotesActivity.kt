@@ -24,8 +24,6 @@ class QuotesActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProviders.of(this, factory).get(QuotesViewModel::class.java)
 
-        viewModel.getQuotes()
-
         viewModel.networkState.observe(this, Observer {
             if (it == NetworkState.LOADED) {
                 progress_bar.visibility = View.GONE
