@@ -21,6 +21,10 @@ class QuotesViewModel(private val repository: UserRepository) : ViewModel() {
     val quotes: LiveData<List<QuotesResponse.Quote>>
         get() = _quotes
 
+    init {
+        getQuotes()
+    }
+
 
     fun getQuotes() {
         _networkState.postValue(NetworkState.LOADING)

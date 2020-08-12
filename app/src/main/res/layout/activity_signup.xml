@@ -137,7 +137,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:text="Already have an account?\nSign in Here"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/colorPrimary" />
 

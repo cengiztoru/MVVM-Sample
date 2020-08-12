@@ -35,8 +35,12 @@ class QuotesActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.quotes.observe(this, Observer {
-            toast("${it.size}")
+        viewModel.quotes.observe(this, Observer { quotes ->
+
+            recyclerview.also {
+                it.setHasFixedSize(true)
+                it.adapter = QuotesAdapter(quotes)
+            }
         })
     }
 }

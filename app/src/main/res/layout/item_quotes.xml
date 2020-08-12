@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androild="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="quote"
+            type="com.cengiztoru.architecturalcomponentssample.data.network.responses.QuotesResponse.Quote" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:elevation="10dp"
+        androild:cardCornerRadius="8dp"
+        androild:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/iv_photo"-->
+            <!--                androild:bindImage="@{quote.thumbnail}"-->
+            <!--                android:layout_width="100dp"-->
+            <!--                android:layout_height="130dp"-->
+            <!--                />-->
+
+
+            <TextView
+                android:id="@+id/tv_quote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{`'`+quote.quote+`'`}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/colorPrimaryDark"
+                tools:text="Success doesn’t just find you. You have to go out and get it." />
+
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_quote"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@{`-` + quote.author}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="italic"
+                tools:text="- Belal Khan" />
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
