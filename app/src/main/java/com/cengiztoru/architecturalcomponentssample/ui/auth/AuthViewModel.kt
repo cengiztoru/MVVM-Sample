@@ -25,6 +25,7 @@ class AuthViewModel(
     val liveEmail: MutableLiveData<String> = MutableLiveData()
 
 
+
     fun onLoginClick(view: View) {
         listener?.onStarted()
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
